@@ -1,7 +1,8 @@
 from sqlalchemy import Column, Integer, String, Text, ForeignKey, DateTime
 from sqlalchemy.orm import relationship
 from database import Base
-import datetime
+from datetime import datetime, timezone
+
 
 class User(Base):
     __tablename__ = "users"
@@ -14,11 +15,12 @@ class User(Base):
 
     items = relationship("Item", back_populates="user")
 
+
 class Item(Base):
     __tablename__ = "items"
     id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, ForeignKey("users.id"))
     content = Column(Text, nullable=False)
-    created_at = Column(DateTime, default=datetime.datetime.utcnow)
+    created_at = Column(DateTime, default=datetime.now(timezone.utc))
 
     user = relationship("User", back_populates="items")

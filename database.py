@@ -1,6 +1,6 @@
 import os
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, declarative_base,Session
+from sqlalchemy.orm import sessionmaker, declarative_base, Session
 from dotenv import load_dotenv
 from typing import Generator
 
@@ -11,6 +11,7 @@ DATABASE_URL = os.getenv("DATABASE_URL")
 engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
+
 
 def get_db() -> Generator[Session, None, None]:
     db = SessionLocal()
