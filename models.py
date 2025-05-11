@@ -12,7 +12,7 @@ class User(Base):
     display_name = Column(String, nullable=True)
     bio = Column(Text, nullable=True)
     profile_image = Column(String, nullable=True)
-
+    age = Column(String, nullable=True)
     items = relationship("Item", back_populates="user")
 
 
